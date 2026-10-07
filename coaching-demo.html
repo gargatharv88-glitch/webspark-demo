@@ -1,0 +1,593 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Elevate Academy — Coaching Website Demo | WebSpark</title>
+    <meta name="description" content="Modern coaching institute website demo created by WebSpark.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080b14;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 11, 20, 0.86);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 1.45rem;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #62a8ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: #c7ccd8;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #72b7ff;
+        }
+
+        .hero {
+            min-height: 100vh;
+            padding: 150px 7% 80px;
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(circle at 80% 25%, rgba(45,130,255,0.22), transparent 35%),
+                radial-gradient(circle at 15% 75%, rgba(125,80,255,0.14), transparent 30%);
+        }
+
+        .hero-content {
+            max-width: 760px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.05);
+            color: #8fc7ff;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #62a8ff;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #aeb6c8;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 23px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #4285f4, #6f4bf2);
+        }
+
+        .secondary {
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.6rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #929aaa;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .course-card {
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(98,168,255,0.5);
+        }
+
+        .course-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .course-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: #9ea6b7;
+            margin-bottom: 20px;
+        }
+
+        .course-link {
+            color: #72b7ff;
+            font-weight: 700;
+        }
+
+        .stats {
+            background: #0d111d;
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 30px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .stat h3 {
+            font-size: 2.4rem;
+            color: #72b7ff;
+        }
+
+        .stat p {
+            color: #929aaa;
+        }
+
+        .why-grid {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .why-card {
+            padding: 25px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .why-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .why-card p {
+            color: #9ea6b7;
+        }
+
+        .cta {
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 750px;
+            margin: auto;
+            padding: 50px 25px;
+            border-radius: 25px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(66,133,244,0.18),
+                    rgba(111,75,242,0.12)
+                );
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cta-box h2 {
+            font-size: 2.6rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            color: #a3aabd;
+            margin-bottom: 25px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 7%;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #7f8797;
+        }
+
+        .webspark {
+            margin-top: 10px;
+            color: #72b7ff;
+            font-weight: 700;
+        }
+
+        @media (max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .courses {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            section {
+                padding: 70px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <a href="#" class="logo">
+            Elevate <span>Academy</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#courses">Courses</a>
+            <a href="#why">Why Us</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                🎓 Learn. Grow. Achieve.
+            </div>
+
+            <h1>
+                Your Future Starts <span>Here.</span>
+            </h1>
+
+            <p>
+                Expert guidance, structured learning and a supportive
+                environment designed to help students achieve their goals.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#courses" class="button primary">
+                    Explore Courses
+                </a>
+
+                <a
+                    href="https://wa.me/918979978542?text=Hi%20Elevate%20Academy%20%F0%9F%8E%93%2C%20I%20want%20to%20know%20more%20about%20your%20courses."
+                    target="_blank"
+                    rel="noopener"
+                    class="button secondary"
+                >
+                    WhatsApp Us
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="courses">
+
+        <div class="section-title">
+
+            <h2>Popular Courses</h2>
+
+            <p>
+                Focused programs designed for better learning.
+            </p>
+
+        </div>
+
+
+        <div class="courses">
+
+            <div class="course-card">
+
+                <div class="course-icon">📐</div>
+
+                <h3>Mathematics</h3>
+
+                <p>
+                    Build strong concepts, problem-solving skills
+                    and exam confidence.
+                </p>
+
+                <a href="#contact" class="course-link">
+                    Enquire Now →
+                </a>
+
+            </div>
+
+
+            <div class="course-card">
+
+                <div class="course-icon">🔬</div>
+
+                <h3>Science</h3>
+
+                <p>
+                    Understand concepts through practical examples
+                    and clear explanations.
+                </p>
+
+                <a href="#contact" class="course-link">
+                    Enquire Now →
+                </a>
+
+            </div>
+
+
+            <div class="course-card">
+
+                <div class="course-icon">💻</div>
+
+                <h3>Computer Science</h3>
+
+                <p>
+                    Learn coding, technology and essential
+                    digital skills.
+                </p>
+
+                <a href="#contact" class="course-link">
+                    Enquire Now →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="stats">
+
+        <div class="stats-grid">
+
+            <div class="stat">
+                <h3>10+</h3>
+                <p>Years Experience</p>
+            </div>
+
+            <div class="stat">
+                <h3>2,000+</h3>
+                <p>Students Guided</p>
+            </div>
+
+            <div class="stat">
+                <h3>95%</h3>
+                <p>Student Satisfaction</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="why">
+
+        <div class="section-title">
+
+            <h2>Why Choose Us?</h2>
+
+            <p>
+                Everything students need to learn with confidence.
+            </p>
+
+        </div>
+
+
+        <div class="why-grid">
+
+            <div class="why-card">
+
+                <h3>👨‍🏫 Experienced Teachers</h3>
+
+                <p>
+                    Learn from mentors who focus on concepts,
+                    clarity and individual progress.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <h3>📚 Structured Learning</h3>
+
+                <p>
+                    Follow a clear learning path with regular
+                    practice and revision.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <h3>🎯 Personal Attention</h3>
+
+                <p>
+                    Get guidance that matches your learning
+                    needs and goals.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <h3>📈 Regular Progress</h3>
+
+                <p>
+                    Track improvement through tests,
+                    feedback and consistent practice.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="cta" id="contact">
+
+        <div class="cta-box">
+
+            <h2>Ready to Start Learning?</h2>
+
+            <p>
+                Talk to our team and discover the right course
+                for your goals.
+            </p>
+
+            <div
+                class="buttons"
+                style="justify-content:center;"
+            >
+
+                <a
+                    href="https://wa.me/918979978542?text=Hi%20Elevate%20Academy%20%F0%9F%8E%93%2C%20I%20want%20to%20discuss%20a%20course."
+                    target="_blank"
+                    rel="noopener"
+                    class="button primary"
+                >
+                    Chat on WhatsApp
+                </a>
+
+                <a
+                    href="mailto:gargatharv88@gmail.com?subject=Coaching%20Website%20Enquiry"
+                    class="button secondary"
+                >
+                    Email Us
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <strong>Elevate Academy</strong>
+
+        <div class="webspark">
+            Website concept crafted by WebSpark ⚡
+        </div>
+
+        <p style="margin-top:10px;">
+            © 2026 Elevate Academy. Demo website.
+        </p>
+
+    </footer>
+
+</body>
+</html>
+```
