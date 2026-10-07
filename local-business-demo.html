@@ -1,0 +1,595 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UrbanFix — Local Business Website Demo | WebSpark</title>
+    <meta name="description" content="Modern local business website demo created by WebSpark.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #090d0c;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(9, 13, 12, 0.88);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #55d68b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: #c5ccc8;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #55d68b;
+        }
+
+        .hero {
+            min-height: 100vh;
+            padding: 150px 7% 80px;
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(circle at 80% 25%, rgba(55,214,139,0.18), transparent 35%),
+                radial-gradient(circle at 15% 75%, rgba(70,150,255,0.10), transparent 30%);
+        }
+
+        .hero-content {
+            max-width: 760px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.05);
+            color: #72e8a4;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #55d68b;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #aeb9b2;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 23px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #36b96f, #1f9d5c);
+        }
+
+        .secondary {
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.6rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #929b95;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(85,214,139,0.5);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: #9ea8a2;
+        }
+
+        .about {
+            background: #0d1311;
+        }
+
+        .about-grid {
+            max-width: 1050px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-size: 2.7rem;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: #a0aaa4;
+        }
+
+        .points {
+            display: grid;
+            gap: 15px;
+        }
+
+        .point {
+            padding: 20px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .point strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .point span {
+            color: #929d97;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 750px;
+            margin: auto;
+            padding: 50px 25px;
+            border-radius: 25px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(54,185,111,0.16),
+                    rgba(255,255,255,0.04)
+                );
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-box h2 {
+            font-size: 2.6rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: #a1aaa5;
+            margin-bottom: 25px;
+        }
+
+        .business-info {
+            margin: 25px auto 0;
+            max-width: 500px;
+            display: grid;
+            gap: 10px;
+            color: #aab3ae;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 7%;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #7f8983;
+        }
+
+        .webspark {
+            margin-top: 10px;
+            color: #55d68b;
+            font-weight: 700;
+        }
+
+        @media (max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            section {
+                padding: 70px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <a href="#" class="logo">
+            Urban<span>Fix</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                🛠️ Trusted Local Service
+            </div>
+
+            <h1>
+                Reliable Help, <span>Right Nearby.</span>
+            </h1>
+
+            <p>
+                Professional local services with friendly support,
+                transparent pricing and dependable workmanship.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#services" class="button primary">
+                    Our Services
+                </a>
+
+                <a
+                    href="https://wa.me/918979978542?text=Hi%20UrbanFix%20%F0%9F%91%8B%2C%20I%20would%20like%20to%20enquire%20about%20your%20services."
+                    target="_blank"
+                    rel="noopener"
+                    class="button secondary"
+                >
+                    WhatsApp Us
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="services">
+
+        <div class="section-title">
+
+            <h2>What We Do</h2>
+
+            <p>
+                Simple solutions for your everyday needs.
+            </p>
+
+        </div>
+
+
+        <div class="services">
+
+            <div class="service-card">
+
+                <div class="service-icon">🔧</div>
+
+                <h3>Repairs</h3>
+
+                <p>
+                    Fast and dependable repair services
+                    handled by experienced professionals.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">🏠</div>
+
+                <h3>Home Services</h3>
+
+                <p>
+                    Convenient services designed to make
+                    everyday home maintenance easier.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">⚡</div>
+
+                <h3>Quick Support</h3>
+
+                <p>
+                    Easy booking and quick communication
+                    whenever you need assistance.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">🧰</div>
+
+                <h3>Maintenance</h3>
+
+                <p>
+                    Regular maintenance to keep your
+                    home and business running smoothly.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">📍</div>
+
+                <h3>Local Service</h3>
+
+                <p>
+                    Serving customers in the local area
+                    with convenient doorstep support.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">💬</div>
+
+                <h3>Easy Communication</h3>
+
+                <p>
+                    Contact us directly through WhatsApp
+                    for quick enquiries and bookings.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="about" id="about">
+
+        <div class="about-grid">
+
+            <div>
+
+                <h2>
+                    Local service. Personal attention.
+                </h2>
+
+                <p>
+                    UrbanFix is a demo concept showing how a local
+                    business can present its services online with
+                    a clean, modern and mobile-friendly website.
+                </p>
+
+            </div>
+
+
+            <div class="points">
+
+                <div class="point">
+
+                    <strong>⚡ Fast Response</strong>
+
+                    <span>
+                        Quick communication for enquiries and bookings.
+                    </span>
+
+                </div>
+
+
+                <div class="point">
+
+                    <strong>💰 Clear Pricing</strong>
+
+                    <span>
+                        Simple service information without unnecessary confusion.
+                    </span>
+
+                </div>
+
+
+                <div class="point">
+
+                    <strong>📱 Mobile Friendly</strong>
+
+                    <span>
+                        Easy to browse and contact from any device.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="contact" id="contact">
+
+        <div class="contact-box">
+
+            <h2>
+                Need a Local Service?
+            </h2>
+
+            <p>
+                Send us a message and tell us what you need.
+            </p>
+
+
+            <div
+                class="buttons"
+                style="justify-content:center;"
+            >
+
+                <a
+                    href="https://wa.me/918979978542?text=Hi%20UrbanFix%20%F0%9F%91%8B%2C%20I%20would%20like%20to%20book%20a%20service."
+                    target="_blank"
+                    rel="noopener"
+                    class="button primary"
+                >
+                    Book on WhatsApp
+                </a>
+
+
+                <a
+                    href="mailto:gargatharv88@gmail.com?subject=Local%20Business%20Website%20Enquiry"
+                    class="button secondary"
+                >
+                    Email Us
+                </a>
+
+            </div>
+
+
+            <div class="business-info">
+
+                <div>📍 Serving Your Local Area</div>
+
+                <div>🕘 Mon – Sat: 9:00 AM – 7:00 PM</div>
+
+                <div>📞 WhatsApp: 8979978542</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <strong>UrbanFix</strong>
+
+        <div class="webspark">
+            Website concept crafted by WebSpark ⚡
+        </div>
+
+        <p style="margin-top:10px;">
+            © 2026 UrbanFix. Demo website.
+        </p>
+
+    </footer>
+
+</body>
+</html>
+```
