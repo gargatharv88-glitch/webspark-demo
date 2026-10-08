@@ -2324,3 +2324,24 @@ button {
     }
 
 }
+
+/* FIX: Portfolio demo buttons must stay clickable */
+.portfolio-card {
+    position: relative;
+}
+
+.portfolio-card .portfolio-preview {
+    pointer-events: none;
+}
+
+.portfolio-card .portfolio-info {
+    position: relative;
+    z-index: 20;
+}
+
+.portfolio-card .portfolio-info a {
+    position: relative;
+    z-index: 30;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
