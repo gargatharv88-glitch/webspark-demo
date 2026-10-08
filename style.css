@@ -2345,3 +2345,37 @@ button {
     pointer-events: auto !important;
     cursor: pointer;
 }
+
+/* FINAL PORTFOLIO CLICK FIX */
+.portfolio-card::before,
+.portfolio-card::after,
+.portfolio-preview::before,
+.portfolio-preview::after {
+    pointer-events: none !important;
+}
+
+.portfolio-card {
+    position: relative;
+}
+
+.portfolio-card > * {
+    pointer-events: none;
+}
+
+.portfolio-card .portfolio-info,
+.portfolio-card .portfolio-info * {
+    pointer-events: auto !important;
+}
+
+.portfolio-card .portfolio-info {
+    position: relative;
+    z-index: 9999 !important;
+}
+
+.portfolio-card .portfolio-info a {
+    position: relative;
+    z-index: 10000 !important;
+    display: inline-block;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
